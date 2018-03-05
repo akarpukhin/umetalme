@@ -35,11 +35,9 @@ def start(bot, update):
 
 
 def stop(bot, update):
-    kill_keyboard = ReplyKeyboardRemove()
     bot.sendMessage(
         update.message.chat_id,
-        text="До встречи!\r\nМеня можно вызвать командой /start",
-        reply_markup=kill_keyboard)
+        text="До встречи!\r\nМеня можно вызвать командой - /start")
     return ConversationHandler.END
 
 
