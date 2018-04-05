@@ -28,7 +28,7 @@ def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Привет! \n Я - uMetalMeBot! \n\n"
                                                  "Бот, который поможет Вам в поиске концертов\r\n"
                                                  "<b>Основные команды:</b>\n"
-                                                 "/NearestEvent\n"
+                                                 "/NearestEvent - посмотреть расписание на ближайшие даты\n"
                                                  "<b>debug commands:</b>\n"
                                                  "/exit\n"
                                                  "/reset", parse_mode='HTML')
