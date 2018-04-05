@@ -7,6 +7,7 @@ import sys
 import time
 import configs
 import logging
+import NearestEvent
 
 
 if not os.path.exists(configs.LOG_FILE):
@@ -27,7 +28,7 @@ def start(bot, update):
     bot.sendMessage(update.message.chat_id, text="Привет! \n Я - uMetalMeBot! \n\n"
                                                  "Бот, который поможет Вам в поиске концертов\r\n"
                                                  "<b>Основные команды:</b>\n"
-                                                 "comming soon\n"
+                                                 "/NearestEvent\n"
                                                  "<b>debug commands:</b>\n"
                                                  "/exit\n"
                                                  "/reset", parse_mode='HTML')
@@ -35,9 +36,11 @@ def start(bot, update):
 
 
 def stop(bot, update):
+    kill_keyboard = ReplyKeyboardRemove()
     bot.sendMessage(
         update.message.chat_id,
-        text="До встречи!\r\nМеня можно вызвать командой - /start")
+        text="До встречи!\r\nМеня можно вызвать командой - /start",
+        reply_markup=kill_keyboard)
     return ConversationHandler.END
 
 
@@ -51,7 +54,9 @@ main_conversation_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
 
     states={
-        'Menu': [CommandHandler("exit", stop)],
+        'Menu': [
+            CommandHandler("NearestEvent", NearestEvent.event),
+            CommandHandler("exit", stop)],
     },
 
     fallbacks=[CommandHandler("exit", stop)]
